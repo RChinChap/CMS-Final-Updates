@@ -13,6 +13,8 @@ public class ContentRetrieval {
         DBConnecter db = new DBConnecter("okeefebl", "1908035");
         Scanner input = new Scanner(System.in);
 
+
+
         /**
          // Program Menu
          // 1: search by title, author's last name, or ID
@@ -36,7 +38,7 @@ public class ContentRetrieval {
             System.out.println("Invalid number. Please enter a number from 1-3:");
         }
 
-        loopBack();
+        //loopBack();
     }
 
     /**

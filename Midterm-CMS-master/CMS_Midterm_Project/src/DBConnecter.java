@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DBConnecter implements ArticleInfoModel{
+public class DBConnecter implements ArticleInfoModelDao{
 
     /**
      * credit for creation and manipulation of the database
@@ -49,22 +49,7 @@ public class DBConnecter implements ArticleInfoModel{
     public void add(ArticleInfo article) {
         articles.add(article);
     }
-    /**
-     * @author richney chin-chap
-     */
-    public void save(String[] cols) {
-        try {
-            Statement insertBook = connection.createStatement();
-            insertBook.execute(
-                    "INSERT INTO POSTINGS3 " +
-                            "(TITLE, CATEGORY, AUTHOR_FIRST, AUTHOR_MIDDLE, AUTHOR_LAST, GENRE, EDITION, PAGES, COVER_TYPE)" +
-                            " VALUES ('" + cols[0] + "', '" + cols[1] + "', '" + cols[2] + "', '" + cols[3] + "', '" +
-                            cols[4] + "', '" + cols[5] + "', " + Integer.parseInt(cols[6]) + ", " +
-                            Integer.parseInt(cols[7]) + ", '" + cols[8] + "')");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     /**
      * @author richney chin-chap
      */
