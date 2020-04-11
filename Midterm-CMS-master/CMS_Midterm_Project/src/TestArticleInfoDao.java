@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestArticleInfoDao {
+public class TestArticleInfoDao implements ArticleInfoModelDao{
 
     Map<Integer, ArticleInfo> articles = new HashMap<Integer, ArticleInfo>();
 
@@ -17,7 +17,8 @@ public class TestArticleInfoDao {
         articles.put(article.getID(), article);
     }
 
-    public ArrayList<ArticleInfo> getArticles() {
+    @Override
+    public ArrayList<ArticleInfo> getArticles(int i) {
         ArrayList articleList = new ArrayList<ArticleInfo>();
         for (Map.Entry<Integer, ArticleInfo> entry : this.articles.entrySet()) {
             articleList.add(entry.getValue());
