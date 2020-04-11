@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Timestamp;
+
 import java.util.Scanner;
 
 /**
@@ -45,7 +42,7 @@ public class ContentRetrieval {
     /**
      * @author richney c
      */
-    public static void loopBack(){
+    private static void loopBack(){
         System.out.println("Return to Main Menu? yes or no");
         Scanner input = new Scanner(System.in);
         boolean response = false;

@@ -43,11 +43,15 @@ public class DBConnecter implements ArticleInfoModel{
         this.useDb = false;
         this.articles = new ArrayList<ArticleInfo>();
     }
-
+    /**
+     * @author richney chin-chap
+     */
     public void add(ArticleInfo article) {
         articles.add(article);
     }
-
+    /**
+     * @author richney chin-chap
+     */
     public void save(String[] cols) {
         try {
             Statement insertBook = connection.createStatement();
@@ -61,7 +65,9 @@ public class DBConnecter implements ArticleInfoModel{
             e.printStackTrace();
         }
     }
-
+    /**
+     * @author richney chin-chap
+     */
     public ArrayList<ArticleInfo> getArticles(int i) {
         if (useDb) {
             articles = new ArrayList<ArticleInfo>();
@@ -89,6 +95,10 @@ public class DBConnecter implements ArticleInfoModel{
         }
         return this.articles;
     }
+
+    /**
+     * @author brie okeefe
+     */
     public void displayInfo(){
         try {
             Statement selectArticle = connection.createStatement();
