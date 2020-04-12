@@ -46,32 +46,32 @@ public class ContentRetrieval {
         //loopBack();
 
 
-        int numTestHeadersParas = 10;
-        String[] testHeaders = new String[numTestHeadersParas];
-        String[] testParagraphs = new String[numTestHeadersParas];
-        for (int i = 0; i < numTestHeadersParas; i++)
-        {
-            testHeaders[i] = "header" + i;
-            testParagraphs[i] = "paragraph" + i;
-        }
+//        int numTestHeadersParas = 10;
+//        String[] testHeaders = new String[numTestHeadersParas];
+//        String[] testParagraphs = new String[numTestHeadersParas];
+//        for (int i = 0; i < numTestHeadersParas; i++)
+//        {
+//            testHeaders[i] = "header" + i;
+//            testParagraphs[i] = "paragraph" + i;
+//        }
+//
+//        TestArticleInfoDao testArticle = new TestArticleInfoDao(articleList);
+//        ArticleInfo article1 = new ArticleInfo();
+//        article1.setId(1017);
+//        article1.setTitle("Coronavirus cases in the US");
+//        article1.setAFirst("NewYork");
+//        article1.setALast("Times");
+//        article1.setPostAt(Timestamp.valueOf(String.valueOf("2020-04-10 12:00:00")));
+//        article1.setStatus(1);
+//        article1.setParagraphs(testParagraphs);
+//        article1.setHeadings(testHeaders);
+//
+//        testArticle.add(article1);
 
-        TestArticleInfoDao testArticle = new TestArticleInfoDao(articleList);
-        ArticleInfo article1 = new ArticleInfo();
-        article1.setId(1017);
-        article1.setTitle("Coronavirus cases in the US");
-        article1.setAFirst("NewYork");
-        article1.setALast("Times");
-        article1.setPostAt(Timestamp.valueOf(String.valueOf("2020-04-10 12:00:00")));
-        article1.setStatus(1);
-        article1.setParagraphs(testParagraphs);
-        article1.setHeadings(testHeaders);
-
-        testArticle.add(article1);
-
-        System.out.println("Display object contents initialized with a single Book - no database calls");
-        for (ArticleInfo article :testArticle.getArticles()) {
-            System.out.println(article.toString());
-        }
+//        System.out.println("Display object contents initialized with a single Book - no database calls");
+//        for (ArticleInfo article :testArticle.getArticles()) {
+//            System.out.println(article.toString());
+//        }
     }
 
     /**
