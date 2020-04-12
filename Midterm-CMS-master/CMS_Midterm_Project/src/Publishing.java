@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 public class Publishing {
 
+    private DBConnecter db;
+
+    public Publishing(DBConnecter database)
+    {
+        db = database;
+    }
+
     /**
      * @author brie okeefe
      */
@@ -25,7 +32,7 @@ public class Publishing {
      * @author brie okeefe
      * @author kaya m
      */
-    public void publisher(ArticleInfo ai) {
+    public void publisher(DBConnecter database, ArticleInfo ai) {
         FormatArticles fa = new FormatArticles();
         Scanner input = new Scanner(System.in);
         System.out.println("Please select what task you would like to accomplish with the selected article: ");
@@ -38,8 +45,9 @@ public class Publishing {
                 System.out.println(ai.getStatus());
             } else if (userInput.equals("2")) {
                 System.out.println("Has the article been posted yet? " + "\n" + "0: No" + "\n" + "1: Yes");
-                int bool = input.nextInt();
-                ai.setStatus(bool, ai.getID());
+                int status = input.nextInt();
+                ai.setStatus(status);
+                db.updateStatus(ai);
                 userInputIsValid = true;
                 System.out.println("The article status is now: " + ai.getStatus() + "\n");
             } else if (userInput.equals("3")) {
@@ -51,6 +59,7 @@ public class Publishing {
                 String newPostTime = input.nextLine();
                 Timestamp ts = Timestamp.valueOf(String.valueOf(newPostTime));
                 ai.setPostAt(ts);
+                db.updatePostAt(ai);
             }
             else if (userInput.equals("5")) {
                 userInputIsValid = true;

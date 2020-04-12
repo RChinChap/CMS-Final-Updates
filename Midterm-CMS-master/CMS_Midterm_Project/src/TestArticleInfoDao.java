@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +18,19 @@ public class TestArticleInfoDao implements ArticleInfoModelDao{
         articles.put(article.getID(), article);
     }
 
-    @Override
-    public ArrayList<ArticleInfo> getArticles(int i) {
+    public void save(String[] cols) {
+        ArticleInfo article = new ArticleInfo();
+        article.setId(Integer.parseInt(cols[0]));
+        article.setTitle(cols[1]);
+        article.setAFirst(cols[2]);
+        article.setALast(cols[3]);
+        article.setPostAt(Timestamp.valueOf(String.valueOf(cols[4])));
+        article.setStatus(Integer.parseInt(cols[6]));
+        this.articles.put(article.getID(), article);
+    }
+
+
+    public ArrayList<ArticleInfo> getArticles() {
         ArrayList articleList = new ArrayList<ArticleInfo>();
         for (Map.Entry<Integer, ArticleInfo> entry : this.articles.entrySet()) {
             articleList.add(entry.getValue());

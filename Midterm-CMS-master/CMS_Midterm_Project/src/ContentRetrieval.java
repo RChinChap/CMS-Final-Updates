@@ -1,4 +1,5 @@
 
+import java.sql.Timestamp;
 import java.util.Scanner;
 
 /**
@@ -22,24 +23,55 @@ public class ContentRetrieval {
          // 3: more options includes: 1: check status 2: set status 3: check post time 3: format an article
          */
 
-        System.out.println("------ MAIN MENU ------"+"\n");
-        System.out.println("Please make a selection: " + "\n" + "\n" + "1: Display all articles " + "\n" + "2: More options (Article ID required)");
-        int userChoice = input.nextInt();
-        if (userChoice == 1) {
-            db.displayInfo();
-        }
-         else if (userChoice ==2){
-            System.out.println("Please enter the ID of the Article you would like to continue with.");
-            int idPublisher = input.nextInt();
-            ArticleInfo newArticle = new ArticleInfo(idPublisher);
-            Publishing newPublish = new Publishing();
-            newPublish.publisher(newArticle);
-        } else {
-            System.out.println("Invalid number. Please enter a number from 1-3:");
-        }
+//        System.out.println("------ MAIN MENU ------"+"\n");
+//        System.out.println("Please make a selection: " + "\n" + "\n" + "1: Display all articles " + "\n" + "2: More options (Article ID required)");
+//        int userChoice = input.nextInt();
+//        if (userChoice == 1) {
+//            db.displayInfo();
+//        }
+//         else if (userChoice ==2){
+//            System.out.println("Please enter the ID of the Article you would like to continue with.");
+//            int idPublisher = input.nextInt();
+//            ArticleInfo newArticle = new ArticleInfo(idPublisher);
+//            Publishing newPublish = new Publishing(db);
+//            newPublish.publisher(newArticle);
+//        } else {
+//            System.out.println("Invalid number. Please enter a number from 1-3:");
+//        }
 
         //loopBack();
 
+        //list all articles
+        for (ArticleInfo article : db.getArticles()) {
+            System.out.println(article.toString());
+        }
+
+        int numTestHeadersParas = 10;
+        String[] testHeaders = new String[numTestHeadersParas];
+        String[] testParagraphs = new String[numTestHeadersParas];
+        for (int i = 0; i < numTestHeadersParas; i++)
+        {
+            testHeaders[i] = "header" + i;
+            testParagraphs[i] = "paragraph" + i;
+        }
+
+        DBConnecter dbtest = new DBConnecter();
+        ArticleInfo article1 = new ArticleInfo();
+        article1.setId(1017);
+        article1.setTitle("Coronavirus cases in the US");
+        article1.setAFirst("NewYork");
+        article1.setALast("Times");
+        article1.setPostAt(Timestamp.valueOf(String.valueOf("2020-04-10 12:00:00")));
+        article1.setStatus(1);
+        article1.setParagraphs(testParagraphs);
+        article1.setHeadings(testHeaders);
+
+        dbtest.add(article1);
+
+        System.out.println("Display object contents initialized with a single Book - no database calls");
+        for (ArticleInfo article :dbtest.getArticles()) {
+            System.out.println(article.toString());
+        }
     }
 
     /**

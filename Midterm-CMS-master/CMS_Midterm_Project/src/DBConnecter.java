@@ -1,4 +1,7 @@
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DBConnecter implements ArticleInfoModelDao{
@@ -53,14 +56,64 @@ public class DBConnecter implements ArticleInfoModelDao{
     /**
      * @author richney chin-chap
      */
-    public ArrayList<ArticleInfo> getArticles(int i) {
+    public void save(String[] cols) {
+        try {
+            Statement insertBook = connection.createStatement();
+            insertBook.execute(
+                    "INSERT INTO POSTINGS3 " +
+                            "(ID, TITLE, AUTHOR_FIRST, AUTHOR_LAST, PHOTO, POST_AT, POSTED, H1, P1, H2, P2, H3, P3, H4, P4, H5, P5, H6, P6, H7, P7, H8, P8, H9, P9, H10, P10)" +
+                            " VALUES ('" + Integer.parseInt(cols[0]) + "', '" + cols[1] + "', '" + cols[2] + "', '" + cols[3] + "', '" +
+                            cols[4] + "', '" + Timestamp.valueOf(String.valueOf(cols[5])) + "', '" +
+                            Integer.parseInt(cols[6]) + "', '" + cols[7] + "','" + cols[8] + "','" + cols[9] + "','" +
+                            cols[10] + "', '" + cols[11] + "', '" + cols[12]+ "', '" + cols[13]+ "', '" + cols[14]+ "', '" + cols[15] +
+                            cols[16]+ "', '" + cols[17]+ "', '" + cols[18]+ "', '" + cols[19]+ "', '" + cols[20]+ "', '" + cols[21] +
+                            cols[22]+ "', '" + cols[23]+ "', '" + cols[24]+ "', '" + cols[25]+ "', '" + cols[26] + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @author richney chin-chap
+     */
+    public void updatePostAt(ArticleInfo ai)
+    {
+        String setPostAtQuery = "UPDATE POSTINGS3 SET POST_AT = '" + ai.getPostAt() + "' WHERE ID = " + ai.getIDString() + ";";
+        //String setPostAtQuery = "UPDATE POSTINGS3 SET POST_AT = '" + ts + "';";
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(setPostAtQuery);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @author richney chin-chap
+     */
+    public void updateStatus(ArticleInfo ai)
+    {
+        String setStatusQuery = "UPDATE POSTINGS3 SET POSTED = " + ai.getStatus() + " WHERE ID = " + ai.getIDString() + ";";
+
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(setStatusQuery);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * @author richney chin-chap
+     */
+    public ArrayList<ArticleInfo> getArticles() {
         if (useDb) {
             articles = new ArrayList<ArticleInfo>();
             try {
+
                 Statement selectArticle = connection.createStatement();
                 ResultSet rs = selectArticle.executeQuery("SELECT ID, TITLE, AUTHOR_FIRST, AUTHOR_LAST," +
                         " PHOTO, POST_AT, POSTED, H1, P1, H2, P2, H3, P3, H4, P4, H5, P5, H6, P6, H7, P7," +
-                        " H8, P8, H9, P9, H10, P10 FROM POSTINGS3 WHERE ID=" + i +";");
+                        " H8, P8, H9, P9, H10, P10 FROM POSTINGS3; ");
                 // Iterate over result set and print each book description.
                 while (rs.next()) {
                     ArticleInfo article = new ArticleInfo();
@@ -68,9 +121,22 @@ public class DBConnecter implements ArticleInfoModelDao{
                     article.setTitle(rs.getString(2)); // Title
                     article.setAFirst(rs.getString(3)); //AuthorFirst
                     article.setALast(rs.getString(4)); // AuthorLast
-                    article.setPhoto(rs.getString(5));// Photo path
-                    article.setPostAt(rs.getTimestamp(6)); // time published
-                    article.setStatus(rs.getInt(7), rs.getInt(8)); //published or not
+
+                    // Fill headers
+                    int headerColumnBase = 8;
+                    String[] newHeadings = new String[ArticleInfo.maxNumHeaders];
+                    for (int i = 0; i < newHeadings.length; i++)
+                    {
+                        newHeadings[i] = rs.getString(headerColumnBase + i*2);
+                    }
+
+                    // Fill paragraphs
+                    int paragraphsColumnBase = 9;
+                    String[] newParagraphs = new String[ArticleInfo.maxNumParagraphs];
+                    for (int i = 9; i < newParagraphs.length; i+=2)
+                    {
+                        newParagraphs[i] = rs.getString(paragraphsColumnBase + i*2);
+                    }
 
                 }
 
@@ -103,4 +169,5 @@ public class DBConnecter implements ArticleInfoModelDao{
     public Connection getConnection(){
         return connection;
     }
+
 }
