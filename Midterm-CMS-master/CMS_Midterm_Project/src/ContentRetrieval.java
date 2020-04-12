@@ -1,5 +1,6 @@
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,8 @@ public class ContentRetrieval {
 
         DBConnecter db = new DBConnecter("okeefebl", "1908035");
         Scanner input = new Scanner(System.in);
+
+        ArrayList<ArticleInfo> articleList = new ArrayList<>();
 
 
 
@@ -42,9 +45,9 @@ public class ContentRetrieval {
         //loopBack();
 
         //list all articles
-        for (ArticleInfo article : db.getArticles()) {
-            System.out.println(article.toString());
-        }
+//        for (ArticleInfo article : db.getArticles()) {
+//            System.out.println(article.toString());
+//        }
 
         int numTestHeadersParas = 10;
         String[] testHeaders = new String[numTestHeadersParas];
@@ -55,7 +58,7 @@ public class ContentRetrieval {
             testParagraphs[i] = "paragraph" + i;
         }
 
-        DBConnecter dbtest = new DBConnecter();
+        TestArticleInfoDao testArticle = new TestArticleInfoDao(articleList);
         ArticleInfo article1 = new ArticleInfo();
         article1.setId(1017);
         article1.setTitle("Coronavirus cases in the US");
@@ -66,10 +69,10 @@ public class ContentRetrieval {
         article1.setParagraphs(testParagraphs);
         article1.setHeadings(testHeaders);
 
-        dbtest.add(article1);
+        testArticle.add(article1);
 
         System.out.println("Display object contents initialized with a single Book - no database calls");
-        for (ArticleInfo article :dbtest.getArticles()) {
+        for (ArticleInfo article :testArticle.getArticles()) {
             System.out.println(article.toString());
         }
     }

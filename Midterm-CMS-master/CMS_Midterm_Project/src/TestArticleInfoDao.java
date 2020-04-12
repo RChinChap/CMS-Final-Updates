@@ -14,6 +14,8 @@ public class TestArticleInfoDao implements ArticleInfoModelDao{
             this.articles.put(article.getID(), article);
         }
     }
+
+
     public void add(ArticleInfo article) {
         articles.put(article.getID(), article);
     }
