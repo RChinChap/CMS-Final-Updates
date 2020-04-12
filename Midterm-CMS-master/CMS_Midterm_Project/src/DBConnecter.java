@@ -56,6 +56,22 @@ public class DBConnecter implements ArticleInfoModelDao{
     /**
      * @author richney chin-chap
      */
+    public ArticleInfo getArticleInfo(int id){
+       for (ArticleInfo ai : articles)
+       {
+           if (ai.getID() == id)
+           {
+               return ai;
+           }
+
+       }
+
+        return null;
+    }
+
+    /**
+     * @author richney chin-chap
+     */
     public void save(String[] cols) {
         try {
             Statement insertBook = connection.createStatement();
@@ -125,7 +141,6 @@ public class DBConnecter implements ArticleInfoModelDao{
                     article.setPostAt(rs.getTimestamp(6)); //Timestamp to post article
                     article.setStatus(rs.getInt(7)); //Published or not
 
-
                     // Fill headers
                     int headerColumnBase = 8;
                     String[] newHeadings = new String[ArticleInfo.maxNumHeaders];
@@ -133,15 +148,20 @@ public class DBConnecter implements ArticleInfoModelDao{
                     {
                         newHeadings[i] = rs.getString(headerColumnBase + i*2);
                     }
+                    article.setHeadings(newHeadings);
 
                     // Fill paragraphs
                     int paragraphsColumnBase = 9;
+                    String test = rs.getString(9);
+                    test = "";
                     String[] newParagraphs = new String[ArticleInfo.maxNumParagraphs];
-                    for (int i = 9; i < newParagraphs.length; i+=2)
+                    for (int j = 0; j < newParagraphs.length; j++)
                     {
-                        newParagraphs[i] = rs.getString(paragraphsColumnBase + i*2);
+                        newParagraphs[j] = rs.getString(paragraphsColumnBase + j*2);
                     }
+                    article.setParagraphs(newParagraphs);
 
+                    articles.add(article);
                 }
 
             } catch (Exception e) {

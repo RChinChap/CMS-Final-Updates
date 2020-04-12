@@ -26,6 +26,7 @@ public class ContentRetrieval {
          // 3: more options includes: 1: check status 2: set status 3: check post time 3: format an article
          */
 
+//        db.getArticles();
 //        System.out.println("------ MAIN MENU ------"+"\n");
 //        System.out.println("Please make a selection: " + "\n" + "\n" + "1: Display all articles " + "\n" + "2: More options (Article ID required)");
 //        int userChoice = input.nextInt();
@@ -34,20 +35,16 @@ public class ContentRetrieval {
 //        }
 //         else if (userChoice ==2){
 //            System.out.println("Please enter the ID of the Article you would like to continue with.");
-//            int idPublisher = input.nextInt();
-//            ArticleInfo newArticle = new ArticleInfo(idPublisher);
+//            int idArticle = input.nextInt();
+//            ArticleInfo newArticle = db.getArticleInfo(idArticle);
 //            Publishing newPublish = new Publishing(db);
-//            newPublish.publisher(newArticle);
+//            newPublish.publisher(db, newArticle);
 //        } else {
 //            System.out.println("Invalid number. Please enter a number from 1-3:");
 //        }
 
         //loopBack();
 
-        //list all articles
-//        for (ArticleInfo article : db.getArticles()) {
-//            System.out.println(article.toString());
-//        }
 
         int numTestHeadersParas = 10;
         String[] testHeaders = new String[numTestHeadersParas];
