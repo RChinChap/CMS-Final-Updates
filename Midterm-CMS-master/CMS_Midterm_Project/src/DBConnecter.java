@@ -121,6 +121,10 @@ public class DBConnecter implements ArticleInfoModelDao{
                     article.setTitle(rs.getString(2)); // Title
                     article.setAFirst(rs.getString(3)); //AuthorFirst
                     article.setALast(rs.getString(4)); // AuthorLast
+                    article.setPhoto(rs.getString(5)); // Photo
+                    article.setPostAt(rs.getTimestamp(6)); //Timestamp to post article
+                    article.setStatus(rs.getInt(7)); //Published or not
+
 
                     // Fill headers
                     int headerColumnBase = 8;

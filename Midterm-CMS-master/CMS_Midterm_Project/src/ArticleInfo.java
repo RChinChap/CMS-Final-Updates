@@ -213,7 +213,8 @@ public class ArticleInfo {
      */
     @Override
     public String toString(){
-        return "Id: " + getIDString() + ", Title: " + getTitle() + ", Author: " + getAFirst() +  " " + getALast();
+        return "Id: " + getIDString() + ", Title: " + getTitle() + ", Author: " + getAFirst() +  " " + getALast() +
+                ", Post time: " + getPostAt() + ", Status: " + getStatus();
     }
 
 }
