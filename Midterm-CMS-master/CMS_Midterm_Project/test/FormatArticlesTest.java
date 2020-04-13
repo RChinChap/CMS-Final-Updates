@@ -8,13 +8,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FormatArticlesTest {
 
+    private FormatArticles sampleArticle = new FormatArticles();
+    private ArticleInfo article1 = new ArticleInfo();
+
     @BeforeEach
     void setUp() {
-
-        ArticleInfo article1 = new ArticleInfo();
+        //Creates a list of articles
         ArrayList<ArticleInfo> articleList = new ArrayList<ArticleInfo>(){{add(article1);}};
         TestArticleInfoDao testArticle = new TestArticleInfoDao(articleList);
 
+        //fills headers and paragraphs
         int numTestHeadersParas = 10;
         String[] testHeaders = new String[numTestHeadersParas];
         String[] testParagraphs = new String[numTestHeadersParas];
@@ -24,6 +27,7 @@ class FormatArticlesTest {
             testParagraphs[i] = "paragraph" + i;
         }
 
+        //sets test data for article
         article1.setId(1017);
         article1.setTitle("Coronavirus cases in the US");
         article1.setAFirst("NewYork");
@@ -42,7 +46,7 @@ class FormatArticlesTest {
 
     @Test
     void formatHeadAsHTML() {
-
+        assertEquals(article1.getHeadings(), sampleArticle.formatHeadAsHTML(article1));
     }
 
     @Test
