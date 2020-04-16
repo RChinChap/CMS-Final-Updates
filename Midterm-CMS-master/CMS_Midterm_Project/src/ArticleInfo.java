@@ -1,4 +1,4 @@
-import java.sql.*;
+import java.sql.Timestamp;
 
 /**
  * @author brie okeefe
@@ -26,11 +26,24 @@ public class ArticleInfo {
      */
 
 
-    public ArticleInfo()
+    public ArticleInfo(int id, String title, String aFirst, String aLast, String photo, Timestamp postAt, int status, String[] para, String[] header)
     {
+        this.id = id;
+        this.title = title;
+        this.aFirst = aFirst;
+        this.aLast = aLast;
+        this.photo = photo;
+        this.postAt = postAt;
+        this.posted = status;
+        this.paragraphs = para;
+        this.headings = header;
+
         headings = new String[maxNumHeaders];
         paragraphs = new String[maxNumParagraphs];
     }
+
+    public ArticleInfo()
+    {}
 
     /**
      * @author brie okeefe

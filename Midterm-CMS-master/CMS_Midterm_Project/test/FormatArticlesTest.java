@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FormatArticlesTest {
 
     private FormatArticles sampleArticle = new FormatArticles();
-    private ArticleInfo article1 = new ArticleInfo();
+    private ArticleInfo article1;
 
     @BeforeEach
     void setUp() {
@@ -23,19 +23,16 @@ class FormatArticlesTest {
         String[] testParagraphs = new String[numTestHeadersParas];
         for (int i = 0; i < numTestHeadersParas; i++)
         {
-            testHeaders[i] = "header" + i;
-            testParagraphs[i] = "paragraph" + i;
+            testHeaders[i] = "header" + i ;
+            testParagraphs[i] = "paragraph" + i + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+                    "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation " +
+                    "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in " +
+                    "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat " +
+                    "non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         }
 
         //sets test data for article
-        article1.setId(1017);
-        article1.setTitle("Coronavirus cases in the US");
-        article1.setAFirst("NewYork");
-        article1.setALast("Times");
-        article1.setPostAt(Timestamp.valueOf(String.valueOf("2020-04-10 12:00:00")));
-        article1.setStatus(1);
-        article1.setParagraphs(testParagraphs);
-        article1.setHeadings(testHeaders);
+        article1 = new ArticleInfo(1017,"Coronavirus cases in the US","Tina","Turner","\thttps://www.oif.ala.org/oif/wp-content/uploads/2019/12/Chillicothe-Prison-Lib-wm.jpg ",Timestamp.valueOf(String.valueOf("2020-04-10 12:00:00")),1, testParagraphs,testHeaders );
 
         testArticle.add(article1);
     }
@@ -44,13 +41,15 @@ class FormatArticlesTest {
     void formatArticleAsHTML() {
     }
 
-    @Test
-    void formatHeadAsHTML() {
-        assertEquals(article1.getHeadings(), sampleArticle.formatHeadAsHTML(article1));
-    }
 
     @Test
+    void formatHeadAsHTML() {
+    }
+
+    //need to make the assertEquals expect an html doc
+    @Test
     void formatHeaderAsHTML() {
+        assertEquals(article1.getHeadings(), sampleArticle.formatHeaderAsHTML(article1));
     }
 
     @Test
