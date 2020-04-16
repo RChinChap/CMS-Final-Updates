@@ -42,8 +42,7 @@ public class ArticleInfo {
         paragraphs = new String[maxNumParagraphs];
     }
 
-    public ArticleInfo()
-    {}
+    public ArticleInfo(){}
 
     /**
      * @author brie okeefe

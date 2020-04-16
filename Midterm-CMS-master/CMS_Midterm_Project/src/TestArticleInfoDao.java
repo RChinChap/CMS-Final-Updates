@@ -15,7 +15,6 @@ public class TestArticleInfoDao implements ArticleInfoModelDao{
         }
     }
 
-
     public void add(ArticleInfo article) {
         articles.put(article.getID(), article);
     }
@@ -31,7 +30,6 @@ public class TestArticleInfoDao implements ArticleInfoModelDao{
         this.articles.put(article.getID(), article);
     }
 
-
     public ArrayList<ArticleInfo> getArticles() {
         ArrayList articleList = new ArrayList<ArticleInfo>();
         for (Map.Entry<Integer, ArticleInfo> entry : this.articles.entrySet()) {
@@ -39,5 +37,4 @@ public class TestArticleInfoDao implements ArticleInfoModelDao{
         }
         return articleList;
     }
-
 }

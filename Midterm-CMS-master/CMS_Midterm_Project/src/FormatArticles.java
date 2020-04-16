@@ -5,10 +5,10 @@ public class FormatArticles {
      * @author kaya m
      */
 
-    String htmlHead = " ";
-    String htmlHeader = " ";
-    String htmlBody = " ";
-    String htmlArticle = " ";
+    String htmlHead = "";
+    String htmlHeader = "";
+    String htmlBody = "";
+    String htmlArticle = "";
 
     /**
      * @author kaya m
